@@ -3,7 +3,7 @@ module.exports = {
     entry: ['./App.jsx'],
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, './'),
+        path: path.resolve(__dirname, './build'),
     },
     module: {
         rules: [
