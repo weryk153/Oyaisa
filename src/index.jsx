@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Index = () => (
-    <div>1231231231231dddddd</div>
+    <div>Oyaisa</div>
 )
 
 export default Index;
