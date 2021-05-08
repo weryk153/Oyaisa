@@ -7,10 +7,13 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, './build'),
     },
+    resolve: {
+        extensions: [".jsx", ".js", ".json", ".css"]
+    },
     module: {
         rules: [
             {
-                test: /.jsx$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {

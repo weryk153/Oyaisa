@@ -1,7 +1,7 @@
 {
     "name": "Oyaisa",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "App.jsx",
     "repository": "https://github.com/weryk153/Oyaisa.git",
     "author": "KurenPeng",
     "license": "MIT",

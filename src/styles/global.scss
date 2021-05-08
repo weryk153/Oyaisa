@@ -19,53 +19,53 @@
         line-height: 28px;
         color: #262626;
         margin: 8px 0px;
-        .room-wrapper {
-            .room-info {
-                width: 343px;
-                height: 24px;
-                font-family: Noto Sans TC;
-                font-weight: 500;
-                font-size: 16px;
-                line-height: 24px;
-                color: #262626;
-                flex: none;
+    }
+}
+.room-wrapper {
+    .room-info {
+        width: 343px;
+        height: 24px;
+        font-family: Noto Sans TC;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: #262626;
+        flex: none;
+        order: 0;
+        flex-grow: 1;
+        margin: 0px 16px;
+    }
+    .people-statistics-wrapper {
+        .adult {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            width: 343px;
+            height: 40px;
+            order: 0;
+            flex-grow: 1;
+            margin: 0px 16px;
+            .adult-left {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 191px;
+                height: 40px;
+                border-radius: 4px;
                 order: 0;
                 flex-grow: 1;
                 margin: 0px 16px;
             }
-            .people-statistics-wrapper {
-                .adult {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: flex-start;
-                    width: 343px;
-                    height: 40px;
-                    order: 0;
-                    flex-grow: 1;
-                    margin: 0px 16px;
-                    .adult-left {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-start;
-                        width: 191px;
-                        height: 40px;
-                        border-radius: 4px;
-                        order: 0;
-                        flex-grow: 1;
-                        margin: 0px 16px;
-                    }
-                    .adult-right {
-                        display: flex;
-                        flex-direction: row;
-                        align-items: flex-start;
-                        width: 136px;
-                        height: 40px;
-                        left: 207px;
-                        order: 1;
-                        flex-grow: 0;
-                        margin: 0px 16px;
-                    }
-                }
+            .adult-right {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                width: 136px;
+                height: 40px;
+                left: 207px;
+                order: 1;
+                flex-grow: 0;
+                margin: 0px 16px;
             }
         }
     }

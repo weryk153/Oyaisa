@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import Room from './component/Room'
 import './styles/global.scss'
 
 const Index = () => {
+    const [people, setPeople] = useState(0);
+    const [rooms, setRooms] = useState([]);
+
+    const handleDistribution = () => {
+
+    }
+    useEffect(() => {
+        setRooms([...rooms, {
+            min: 0,
+            max: 4,
+        }, {
+            min: 0,
+            max: 2,
+        }
+        ])
+    }, []);
 
     return (
         <div className='container'>
@@ -12,20 +29,9 @@ const Index = () => {
                     <div className="room-info">
                         房間：2 人
                     </div>
-                    <div className="people-statistics-wrapper">
-                        <div className="adult">
-                            <div className="adult-left">
-                                <div>大人</div>
-                                <div>年齡 20+</div>
-                            </div>
-                            <div className="adult-right">
-                                <div>+</div>
-                                <input type="number" />
-                                <div>-</div>
-                            </div>
-                        </div>
-                        <div className="children"></div>
-                    </div>
+                    {rooms.map((room, index) =>
+                        <Room key={`room_${index}`} room={room}></Room>
+                    )}
                 </div>
             </div>
         </div>
