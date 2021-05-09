@@ -1,6 +1,6 @@
-import React from 'react';
-import plisImg from '../public/plus.png';
-import minusImg from '../public/minus.png';
+import React, { useCallback } from 'react';
+import LeftField from './common/LeftField'
+import RightField from './common/RightField'
 
 const PeopleCountField = ({ room, type, setAdultCount, setChildrenCount, childrenCount, adultCount }) => {
     const PeopleType = {
@@ -18,7 +18,7 @@ const PeopleCountField = ({ room, type, setAdultCount, setChildrenCount, childre
         }
     };
 
-    const handleClicAddCount = (type) => () => {
+    const handleClicAddCount = useCallback(type => () => {
         if (room.max > adultCount + childrenCount) {
             if (type === 'adult') {
                 setAdultCount(val => val + 1);
@@ -27,9 +27,9 @@ const PeopleCountField = ({ room, type, setAdultCount, setChildrenCount, childre
                 setChildrenCount(val => val + 1);
             }
         }
-    };
+    }, [adultCount, childrenCount]);
 
-    const handleClicMinusCount = (type) => () => {
+    const handleClicMinusCount = useCallback(type => () => {
         if (type === 'adult') {
             if (adultCount > 0) {
                 setAdultCount(val => val - 1);
@@ -40,42 +40,29 @@ const PeopleCountField = ({ room, type, setAdultCount, setChildrenCount, childre
                 setChildrenCount(val => val - 1);
             }
         }
-    };
+    }, [adultCount, childrenCount]);
 
-    const handleChangePeopleCount = (e) => {
-        if (e.target.name === "adult") {
-            if (Number(e.target.value) > PeopleType[type].max) {
+    const handleChangePeopleCount = useCallback((event) => {
+        if (event.target.name === "adult") {
+            if (Number(event.target.value) > PeopleType[type].max) {
                 setAdultCount(PeopleType[type].max)
             } else {
-                setAdultCount(Number(e.target.value));
+                setAdultCount(Number(event.target.value));
             }
         }
-        if (e.target.name === "child") {
-            if (Number(e.target.value) > PeopleType[type].max) {
+        if (event.target.name === "child") {
+            if (Number(event.target.value) > PeopleType[type].max) {
                 setChildrenCount(PeopleType[type].max)
             } else {
-                setChildrenCount(Number(e.target.value));
+                setChildrenCount(Number(event.target.value));
             }
         }
-    }
+    }, [event.target.value]);
 
     return (
         <div className="people-count-field-wrapper">
-            <div className="field-left">
-                <div className="title">{PeopleType[type].title}</div>
-                <div className="description">年齡 {PeopleType[type].age}</div>
-            </div>
-            <div className="field-right">
-                <div className="img-border" onClick={handleClicMinusCount(type)}>
-                    <img src={minusImg}></img>
-                </div>
-                <div className="input-border">
-                    <input name={type} min={room.min} max={PeopleType[type].max} type="number" value={PeopleType[type].count} step="1" onChange={handleChangePeopleCount} />
-                </div>
-                <div className="img-border" onClick={handleClicAddCount(type)}>
-                    <img src={plisImg}></img>
-                </div>
-            </div>
+            <LeftField title={PeopleType[type].title} age={PeopleType[type].age} />
+            <RightField type={type} min={room.min} max={PeopleType[type].max} value={PeopleType[type].count} handleChangePeopleCount={handleChangePeopleCount} handleClicMinusCount={handleClicMinusCount} handleClicAddCount={handleClicAddCount} />
         </div>
     )
 }
