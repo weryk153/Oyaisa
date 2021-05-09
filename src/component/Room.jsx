@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 const Room = ({ room, index, handleDistribution }) => {
     const [adultCount, setAdultCount] = useState('0');
     const [childrenCount, setChildrenCount] = useState('0');
-    // const [totalCount, setTotalCount] = useState(0);
 
     const handleChangeCount = (e) => {
         if (e.target.name === "adult") {
@@ -17,17 +16,12 @@ const Room = ({ room, index, handleDistribution }) => {
     useEffect(() => {
         handleDistribution(index, adultCount, childrenCount)
     }, [adultCount, childrenCount])
-    // useEffect(() => {
-    //     setTotalCount(Number(adultCount) + Number(childrenCount))
-    // }, [Number(adultCount), Number(childrenCount)])
-
-    // console.log(totalCount);
 
     return (
         <div className="people-statistics-wrapper">
             <div className="room-info">
-                房間：2 人
-                    </div>
+                {`房間：${Number(adultCount) + Number(childrenCount)} 人`}
+            </div>
             <div className="adult">
                 <div className="adult-left">
                     <div>大人</div>

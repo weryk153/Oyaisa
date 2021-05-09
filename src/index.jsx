@@ -5,7 +5,7 @@ import './styles/global.scss'
 const Index = () => {
     const [people, setPeople] = useState(0);
     const [rooms, setRooms] = useState([]);
-    const [distribution, setDistribution] = useState([{ adult: 0, child: 0 }, { adult: 0, child: 0 }]);
+    const [distribution, setDistribution] = useState([]);
 
     const handleDistribution = (index, adultCount, childrenCount) => {
         distribution[index] = {
@@ -36,8 +36,15 @@ const Index = () => {
         }, {
             min: 0,
             max: 2,
-        }
-        ])
+        }])
+    }, []);
+
+    useEffect(() => {
+        setDistribution([...distribution, {
+            adult: 0, child: 0
+        }, {
+            adult: 0, child: 0
+        }])
     }, []);
 
     useEffect(() => {
