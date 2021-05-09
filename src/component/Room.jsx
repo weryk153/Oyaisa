@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PeopleCountField from './PeopleCountField'
+import RoomInfo from './RoomInfo'
 
 const Room = ({ room, index, handleDistribution }) => {
     const [adultCount, setAdultCount] = useState(0);
@@ -36,9 +37,7 @@ const Room = ({ room, index, handleDistribution }) => {
 
     return (
         <div className="people-statistics-wrapper">
-            <div className="room-info">
-                {`房間：${adultCount + childrenCount} 人`}
-            </div>
+            <RoomInfo adultCount={adultCount} childrenCount={childrenCount} />
             {peopleTypeList.map((type) =>
                 <PeopleCountField key={type} type={type} room={room} handleClicMinusCount={handleClicMinusCount} handleClicAddCount={handleClicAddCount} adultCount={adultCount} childrenCount={childrenCount} />
             )}

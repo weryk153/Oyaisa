@@ -17,16 +17,18 @@ const PeopleCountField = ({ room, type, handleClicMinusCount, handleClicAddCount
     };
 
     return (
-        <div className="adult">
-            <div className="adult-left">
+        <div className="people-count-field-wrapper">
+            <div className="field-left">
                 <div className="title">{PeopleType[type].title}</div>
                 <div className="description">年齡 {PeopleType[type].age}</div>
             </div>
-            <div className="adult-right">
+            <div className="field-right">
                 <div className="img-border" onClick={handleClicMinusCount(type)}>
                     <img src={minusImg}></img>
                 </div>
-                <input name="adult" min={room.min} max={room.max - PeopleType[type].count} type="number" value={PeopleType[type].count} readOnly />
+                <div className="input-border">
+                    <input name={type} min={room.min} max={room.max - PeopleType[type].count} type="number" value={PeopleType[type].count} step="1" />
+                </div>
                 <div className="img-border" onClick={handleClicAddCount(type)}>
                     <img src={plisImg}></img>
                 </div>
