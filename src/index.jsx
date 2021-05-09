@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import Room from './component/Room'
-import './styles/global.scss'
+import RoomsContainer from './component/RoomsContainer'
+import BookingInfo from './component/BookingInfo'
+import Header from './component/Header';
+import './styles/global.scss';
 
 const Index = () => {
     const [people, setPeople] = useState(0);
@@ -16,18 +18,19 @@ const Index = () => {
         setDistribution([
             ...distribution,
         ])
+    };
 
-    }
-    console.log(distribution);
-
-    const adultTotal = distribution.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue.adult;  // 與前一個值相加
+    const peopleSums = distribution.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue.adult + currentValue.child
     }, 0);
 
-    const childTotal = distribution.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue.child;  // 與前一個值相加
+    const roomSums = distribution.reduce((accumulator, currentValue) => {
+        if (currentValue.adult > 0 || currentValue.child > 0) {
+            return accumulator + 1;
+        } else {
+            return accumulator
+        }
     }, 0);
-
 
     useEffect(() => {
         setRooms([...rooms, {
@@ -48,19 +51,15 @@ const Index = () => {
     }, []);
 
     useEffect(() => {
-        setPeople(adultTotal + childTotal)
-    }, [adultTotal, childTotal])
+        setPeople(peopleSums)
+    }, [peopleSums]);
 
     return (
         <div className='container'>
-            <header>oyaisa</header>
+            <Header />
             <div className="app-wrapper">
-                <div className="booking-info">{`住客人數：${people} 人 / ${rooms.length} 房`}</div>
-                <div className="room-wrapper">
-                    {rooms.map((room, index) =>
-                        <Room key={`room_${index}`} room={room} index={index} distribution={distribution} handleDistribution={handleDistribution}></Room>
-                    )}
-                </div>
+                <BookingInfo people={people} roomSums={roomSums} />
+                <RoomsContainer rooms={rooms} distribution={distribution} handleDistribution={handleDistribution} />
             </div>
         </div>
     )
