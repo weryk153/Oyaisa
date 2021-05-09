@@ -7,30 +7,6 @@ const Room = ({ room, index, handleDistribution }) => {
     const [childrenCount, setChildrenCount] = useState(0);
     const peopleTypeList = ['adult', 'child'];
 
-    const handleClicAddCount = (type) => () => {
-        if (room.max > adultCount + childrenCount) {
-            if (type === 'adult') {
-                setAdultCount(val => val + 1)
-            }
-            if (type === 'child') {
-                setChildrenCount(val => val + 1)
-            }
-        }
-    };
-
-    const handleClicMinusCount = (type) => () => {
-        if (type === 'adult') {
-            if (adultCount > 0) {
-                setAdultCount(val => val - 1)
-            }
-        }
-        if (type === 'child') {
-            if (childrenCount > 0) {
-                setChildrenCount(val => val - 1)
-            }
-        }
-    };
-
     useEffect(() => {
         handleDistribution(index, adultCount, childrenCount)
     }, [adultCount, childrenCount]);
@@ -39,7 +15,7 @@ const Room = ({ room, index, handleDistribution }) => {
         <div className="people-statistics-wrapper">
             <RoomInfo adultCount={adultCount} childrenCount={childrenCount} />
             {peopleTypeList.map((type) =>
-                <PeopleCountField key={type} type={type} room={room} handleClicMinusCount={handleClicMinusCount} handleClicAddCount={handleClicAddCount} adultCount={adultCount} childrenCount={childrenCount} />
+                <PeopleCountField key={type} type={type} room={room} setAdultCount={setAdultCount} setChildrenCount={setChildrenCount} adultCount={adultCount} childrenCount={childrenCount} />
             )}
         </div>
     )
