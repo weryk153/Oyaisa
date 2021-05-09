@@ -10,8 +10,8 @@ const Index = () => {
     const handleDistribution = (index, adultCount, childrenCount) => {
         distribution[index] = {
             ...distribution[index],
-            adult: Number(adultCount),
-            child: Number(childrenCount)
+            adult: adultCount,
+            child: childrenCount
         }
         setDistribution([
             ...distribution,

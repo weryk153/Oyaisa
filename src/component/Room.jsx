@@ -1,18 +1,35 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import plisImg from '../public/plus.png'
+import minusImg from '../public/minus.png'
 
 const Room = ({ room, index, handleDistribution }) => {
-    const [adultCount, setAdultCount] = useState('0');
-    const [childrenCount, setChildrenCount] = useState('0');
+    const [adultCount, setAdultCount] = useState(0);
+    const [childrenCount, setChildrenCount] = useState(0);
 
-    const handleChangeCount = (e) => {
-        if (e.target.name === "adult") {
-            setAdultCount(e.target.value);
+    const handleClicAddCount = (type) => () => {
+        if (room.max > adultCount + childrenCount) {
+            if (type === 'adult') {
+                setAdultCount(val => val + 1)
+            }
+            if (type === 'child') {
+                setChildrenCount(val => val + 1)
+            }
         }
-        if (e.target.name === "children") {
-            setChildrenCount(e.target.value);
-        }
-        handleDistribution(index, adultCount, childrenCount)
     }
+
+    const handleClicMinusCount = (type) => () => {
+        if (type === 'adult') {
+            if (adultCount > 0) {
+                setAdultCount(val => val - 1)
+            }
+        }
+        if (type === 'child') {
+            if (childrenCount > 0) {
+                setChildrenCount(val => val - 1)
+            }
+        }
+    }
+
     useEffect(() => {
         handleDistribution(index, adultCount, childrenCount)
     }, [adultCount, childrenCount])
@@ -20,28 +37,36 @@ const Room = ({ room, index, handleDistribution }) => {
     return (
         <div className="people-statistics-wrapper">
             <div className="room-info">
-                {`房間：${Number(adultCount) + Number(childrenCount)} 人`}
+                {`房間：${adultCount + childrenCount} 人`}
             </div>
             <div className="adult">
                 <div className="adult-left">
-                    <div>大人</div>
-                    <div>年齡 20+</div>
+                    <div className="title">大人</div>
+                    <div className="description">年齡 20+</div>
                 </div>
                 <div className="adult-right">
-                    <div>-</div>
-                    <input name="adult" min={room.min} max={room.max - childrenCount} type="number" value={adultCount} onChange={handleChangeCount} />
-                    <div>+</div>
+                    <div className="img-border" onClick={handleClicMinusCount('adult')}>
+                        <img src={minusImg}></img>
+                    </div>
+                    <input name="adult" min={room.min} max={room.max - childrenCount} type="number" value={adultCount} readOnly />
+                    <div className="img-border" onClick={handleClicAddCount('adult')}>
+                        <img src={plisImg}></img>
+                    </div>
                 </div>
             </div>
             <div className="adult">
                 <div className="adult-left">
-                    <div>小孩</div>
-                    <div>年齡 0+</div>
+                    <div className="title">小孩</div>
+                    <div className="description">年齡 0+</div>
                 </div>
                 <div className="adult-right">
-                    <div>-</div>
-                    <input name="children" min={room.min} max={room.max - adultCount} type="number" value={childrenCount} onChange={handleChangeCount} />
-                    <div>+</div>
+                    <div className="img-border" onClick={handleClicMinusCount('child')}>
+                        <img src={minusImg}></img>
+                    </div>
+                    <input name="children" min={room.min} max={room.max - adultCount} type="number" value={childrenCount} readOnly />
+                    <div className="img-border" onClick={handleClicAddCount('child')}>
+                        <img src={plisImg}></img>
+                    </div>
                 </div>
             </div>
         </div>

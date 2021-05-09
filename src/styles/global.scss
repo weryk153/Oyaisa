@@ -40,11 +40,17 @@
             display: flex;
             flex-direction: row;
             align-items: flex-start;
+            padding: 0px;
+            position: static;
             width: 343px;
             height: 40px;
-            order: 0;
-            flex-grow: 1;
-            margin: 0px 16px;
+            left: 16px;
+            top: 100px;
+            flex: none;
+            order: 2;
+            align-self: stretch;
+            flex-grow: 0;
+            margin: 16px 0px;
             .adult-left {
                 display: flex;
                 flex-direction: column;
@@ -55,17 +61,80 @@
                 order: 0;
                 flex-grow: 1;
                 margin: 0px 16px;
+                .title {
+                    position: static;
+                    width: 191px;
+                    height: 20px;
+                    left: 0px;
+                    top: 0px;
+                    font-family: Noto Sans TC;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #262626;
+                    flex: none;
+                    order: 0;
+                    align-self: stretch;
+                    flex-grow: 0;
+                    margin: 0px 0px;
+                }
+                .description {
+                    position: static;
+                    width: 191px;
+                    height: 20px;
+                    left: 0px;
+                    top: 20px;
+                    font-family: Noto Sans TC;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #8C8C8C;
+                    margin: 0px 0px;
+                }
             }
             .adult-right {
                 display: flex;
                 flex-direction: row;
                 align-items: flex-start;
+                padding: 0px;
+                
+                position: static;
                 width: 136px;
                 height: 40px;
                 left: 207px;
+                top: 0px;
+                
+                
+                /* Inside Auto Layout */
+                
+                flex: none;
                 order: 1;
                 flex-grow: 0;
                 margin: 0px 16px;
+                .img-border {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    height: 40px;
+                    width: 40px;
+                    padding: 8px;
+                    background: #FFFFFF;
+                    border: 1px solid #1E9FD2;
+                    box-sizing: border-box;
+                    border-radius: 4px;
+                }
+                input {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #FFFFFF;
+                    border: 1px solid #BFBFBF;
+                    box-sizing: border-box;
+                    border-radius: 4px;
+                    margin: 0px 8px;
+                }
             }
         }
     }
